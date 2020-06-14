@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Implementation\" />
+    <Folder Include="AutoMapper\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Data\QL_Vat_Lieu_Xay_Dung_Data.csproj" />
+    <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Data_EF\QL_Vat_Lieu_Xay_Dung_Data_EF.csproj" />
+    <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Utilities\QL_Vat_Lieu_Xay_Dung_Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

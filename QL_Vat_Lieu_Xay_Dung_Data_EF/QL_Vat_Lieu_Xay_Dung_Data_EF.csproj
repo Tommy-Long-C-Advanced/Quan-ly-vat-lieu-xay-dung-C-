@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Data\QL_Vat_Lieu_Xay_Dung_Data.csproj" />
+    <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Infrastructure\QL_Vat_Lieu_Xay_Dung_Infrastructure.csproj" />
+    <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Utilities\QL_Vat_Lieu_Xay_Dung_Utilities.csproj" />
+  </ItemGroup>
+
+</Project>
