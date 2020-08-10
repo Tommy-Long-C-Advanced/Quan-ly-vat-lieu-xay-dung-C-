@@ -16,3 +16,9 @@ Web API
 
 - Integrate JSon Web Token in API
 - Integrate Swagger to Manage API
+
+Repository Ghi Lại Quá Trình Hoàn Thành Đồ Án Môn Học Thầy Danh
+https://github.com/GroupDoAnVatLieuXayDung/QL_Vat_Lieu_Xay_Dung
+
+Repository Nộp Đồ Án Thầy Danh
+https://github.com/Tommy-Long-C-Advanced/Quan-ly-vat-lieu-xay-dung-C-
