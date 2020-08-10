@@ -1,0 +1,286 @@
+﻿@using QL_Vat_Lieu_Xay_Dung_Data.Enums
+@model QL_Vat_Lieu_Xay_Dung_WebApp.Models.ProductDetailViewModel
+@{
+    ViewData["Title"] = Model.Product.SeoPageTitle;
+    ViewData["MetaKeyword"] = Model.Product.SeoKeywords;
+    ViewData["MetaDescription"] = Model.Product.SeoDescription;
+    var productCategory = Model.ProductCategory;
+    var product = Model.Product;
+}
+@section Scripts{
+    <!-- bxslider js -->
+    <script type="text/javascript" src="~/assets/client/js/jquery.bxslider.js"></script>
+
+    <!-- flexslider js -->
+    <script type="text/javascript" src="~/assets/client/js/jquery.flexslider.js"></script>
+    <!--cloud-zoom js -->
+    <script type="text/javascript" src="~/assets/client/js/cloud-zoom.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/jquery.magnifying-zoom.js"></script>
+    @*<script src="~/assets/client-app/client_controllers/product/product_detail_index.js"></script>*@
+    <script src="~/assets/client-app/client_controllers/product/product_detail_index.min.js"></script>
+    <script>
+        var productDetailObject = new ProductDetailAjax();
+        productDetailObject.initialize();
+    </script>
+
+}
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul>
+                    <li class="home"> <a title="Go to Home Page" href="/">Home</a><span>&raquo;</span></li>
+                    <li class=""> <a title="Go to ProductCategory" href="/@productCategory.SeoAlias-c.@(productCategory.Id).html">@productCategory.Name</a><span>&raquo;</span></li>
+                    <li><strong>@product.Name</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumbs End -->
+<!-- Main Container -->
+<div class="main-container col1-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-main">
+                <div class="product-view-area">
+                    <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
+                        @if (product.PromotionPrice.HasValue)
+                        {
+                            <div class="icon-sale-label sale-left">Sale</div>
+                        }
+                        <div width="474" height="474" class="large-image">
+                            <a href="@product.Image" class="cloud-zoom" id="magni_img" data-big="@product.Image" data-overlay="/img_ds/magnifying_glass.png" rel="useWrapper: false, adjustY:0, adjustX:20">
+                                <img src="@product.Image" alt="pr img" />
+                            </a>
+                        </div>
+                        <div class="flexslider flexslider-thumb">
+                            <ul class="previews-list slides">
+                                <li width="270" height="270">
+
+                                    <a href="@product.Image" class="cloud-zoom-gallery" rel="useZoom: 'magni_img', smallImage: '@product.Image' ">
+                                        <img src="@product.Image" alt="ProductImages" />
+                                    </a>
+                                </li>
+                                @foreach (var item in Model.ProductImages)
+                                {
+                                    <li width="270" height="270">
+                                        <a href='@item.Path' class='cloud-zoom-gallery' rel="useZoom: 'magni_img', smallImage: '@item.Path' ">
+                                            <img src="@item.Path" alt="@item.Caption" />
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <!-- end: more-images -->
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-lg-7 col-md-7 product-details-area">
+                        <div class="product-name">
+                            <h1>@product.Name</h1>
+                        </div>
+                        <div class="price-box">
+                            @if (product.PromotionPrice.HasValue)
+                            {
+                                <p class="special-price">
+                                    <span class="price-label">Special Price</span>
+                                    <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.PromotionPrice.Value)</span>
+                                </p>
+                                <p class="old-price">
+                                    <span class="price-label">Regular Price:</span>
+                                    <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.Price)</span>
+                                </p>
+
+                            }
+                            else
+                            {
+                                <p class="special-price">
+                                    <span class="price-label">Special Price</span>
+                                    <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.Price)</span>
+                                </p>
+                            }
+                        </div>
+                        <div class="ratings">
+                            <p class="rating-links"> View Count <span class="separator">:</span> @Model.ViewCount </p>
+                            <p id="available_p" class="availability @(Model.CheckAvailability == Status.Active ? "in-stock" : "out-of-stock") pull-right">Availability: <span id="available">@Model.CheckAvailability</span></p>
+                        </div>
+                        @if (!string.IsNullOrEmpty(@product.Brand.Name))
+                        {
+                            <div class="short-description">
+                                <h2>Thương Hiệu</h2>
+                                <a href="/@product.Brand.SeoAlias-b.@(product.Brand.Id).html">
+                                    <p> @product.Brand.Name</p>
+                                </a>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(@product.Description))
+                        {
+                            <div class="short-description">
+                                <h2>Mô Tả</h2>
+                                @Html.Raw(product.Description)
+                            </div>
+                        }
+
+                        <div class="size-area">
+                            <h2 class="saider-bar-title">Size</h2>
+                            <div class="size">
+                                <select asp-items="Model.Sizes" data-id="@Model.Product.Id" id="ddlSizeId"></select>
+                            </div>
+                        </div>
+                        <div class="product-variation">
+                            <form action="#" method="post">
+                                <div class="cart-plus-minus">
+                                    <label for="qty">Quantity:</label>
+                                    <div class="numbers-row">
+                                        <div onClick="var result = document.getElementById('txtQuantity');var qty = result.value;if (qty > 1 && !isNaN( qty )) result.value--;return false;" class="dec qtybutton">
+                                            <i class="fa fa-minus">&nbsp;</i>
+                                        </div>
+                                        <input type="text" class="qty" title="Qty" value="1" readonly maxlength="12" id="txtQuantity" name="txtQuantity">
+                                        <div onClick="var result = document.getElementById('txtQuantity'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" class="inc qtybutton"><i class="fa fa-plus">&nbsp;</i></div>
+                                    </div>
+                                </div>
+                                @if (Model.CheckAvailability == Status.Active)
+                                {
+                                    <button class="button pro-add-to-cart" id="btnAddToCart" data-id="@Model.Product.Id" title="Add to Cart" type="button"><span><i class="fa fa-shopping-basket"></i> Add to Cart</span></button>
+
+                                }
+                            </form>
+                        </div>
+                        @if (Model.Tags.Count > 0)
+                        {
+                            <div class="pro-tags">
+                                <div class="pro-tags-title">Tags:</div>
+                                @foreach (var tag in Model.Tags)
+                                {
+                                    <a class="but_tag" href="/tag-@(tag.Id).html">@tag.Id</a>
+                                }
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-overview-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="product-tab-inner">
+                            <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
+                                <li class="active"> <a href="#description" data-toggle="tab"> Description </a> </li>
+                            </ul>
+                            <div id="productTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="description">
+                                    <div class="std">
+                                        @Html.Raw(product.Content)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Container End -->
+<!-- Related Product Slider -->
+
+@if (Model.RelatedProducts.Count > 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="related-product-area">
+                    <div class="page-header">
+                        <h2>Related Products</h2>
+                    </div>
+                    <div class="related-products-pro">
+                        <div class="slider-items-products">
+                            <div id="related-product-slider" class="product-flexslider hidden-buttons">
+                                <div class="slider-items slider-width-col4 fadeInUp">
+                                    @foreach (var item in @Model.RelatedProducts)
+                                    {
+                                        <div class="product-item">
+                                            <div class="item-inner">
+                                                <div class="product-thumbnail">
+                                                    <div class="pr-img-area">
+                                                        <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">
+                                                            <figure> <img width="260" height="260" class="first-img" src="@item.Image" alt="HTML template"> <img width="260" height="260" class="hover-img" src="@item.Image" alt="HTML template"></figure>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="item-info">
+                                                    <div class="info-inner">
+                                                        <div class="item-title"> <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">@item.Name</a> </div>
+                                                        <div class="item-content">
+                                                            <div class="item-price">
+                                                                <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Price)</span> </span> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- Related Product Slider End -->
+<!-- Upsell Product Slider -->
+@if (Model.UpsellProducts.Count > 0)
+{
+    <section class="upsell-product-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="page-header">
+                        <h2>UpSell Products</h2>
+                    </div>
+                    <div class="slider-items-products">
+                        <div id="upsell-product-slider" class="product-flexslider hidden-buttons">
+                            <div class="slider-items slider-width-col4">
+                                @foreach (var item in @Model.UpsellProducts)
+                                {
+                                    <div class="product-item">
+                                        <div class="item-inner">
+                                            <div class="product-thumbnail">
+                                                <div class="icon-sale-label sale-left">Sale</div>
+                                                <div class="icon-new-label new-right">New</div>
+                                                <div class="pr-img-area">
+                                                    <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">
+                                                        <figure> <img class="first-img" width="260" height="260" src="@item.Image" alt="HTML template"> <img class="hover-img" width="260" height="260" src="@item.Image" alt="HTML template"></figure>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="item-info">
+                                                <div class="info-inner">
+                                                    <div class="item-title"> <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">@item.Name</a> </div>
+                                                    <div class="item-content">
+                                                        <div class="item-price">
+                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.PromotionPrice.Value)</span> </span> </div>
+                                                        </div>
+                                                        <div class="pro-action">
+                                                            <button type="button" id="btnAddToCart" class="add-to-cart"><span>Thêm Vào Giỏ</span> </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

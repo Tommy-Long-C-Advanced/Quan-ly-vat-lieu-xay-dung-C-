@@ -1,52 +1,87 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
 using QL_Vat_Lieu_Xay_Dung_Data.Entities;
 using QL_Vat_Lieu_Xay_Dung_Data.Enums;
-using QL_Vat_Lieu_Xay_Dung_Data.IRepositories;
 using QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Product;
+using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.System;
+using QL_Vat_Lieu_Xay_Dung_Utilities.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
 {
     public class ProductCategoryService : IProductCategoryService
     {
         private readonly IMapper _mapper;
-        private readonly IProductCategoryRepository _productCategoryRepository;
+
+        private readonly IRepository<ProductCategory, int> _productCategoryRepository;
+
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProductCategoryService(IProductCategoryRepository productCategoryRepository,IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IRepository<Announcement, string> _announceRepository;
+
+        private readonly IRepository<AnnouncementUser, int> _announceUserRepository;
+
+        public ProductCategoryService(IRepository<ProductCategory, int> productCategoryRepository, IUnitOfWork unitOfWork, IMapper mapper, IRepository<Announcement, string> announceRepository, IRepository<AnnouncementUser, int> announceUserRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _announceRepository = announceRepository;
+            _announceUserRepository = announceUserRepository;
             _productCategoryRepository = productCategoryRepository;
-
-        }
-        public ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryVm)
-        {
-            var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryVm);
-            _productCategoryRepository.Add(productCategory);
-            return productCategoryVm;
-
         }
 
-        public void Update(ProductCategoryViewModel productCategoryVm)
+        public GenericResult Add(ProductCategoryViewModel productCategoryViewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryViewModel);
+                _productCategoryRepository.Add(productCategory);
+                return new GenericResult(true, "Add Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Add Failed", "Error");
+            }
         }
 
-        public void Delete(int id)
+        public GenericResult Update(ProductCategoryViewModel productCategoryViewModel)
         {
-            _productCategoryRepository.Remove(id);
+            try
+            {
+                var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryViewModel);
+                _productCategoryRepository.Update(productCategory);
+                return new GenericResult(true, "Update Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Update Failed", "Error");
+            }
+        }
+
+        public GenericResult Delete(int id)
+        {
+            try
+            {
+                _productCategoryRepository.Remove(id);
+                return new GenericResult(true, "Delete Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Delete Failed", "Error");
+            }
+        }
+
+        public List<ProductCategoryViewModel> GetByAlias(string alias)
+        {
+            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll(x => x.SeoAlias == alias)).ToList();
         }
 
         public List<ProductCategoryViewModel> GetAll()
         {
-            return _productCategoryRepository.FindAll().OrderBy(x => x.ParentId).ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider)
+            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll().OrderBy(x => x.ParentId))
                 .ToList();
         }
 
@@ -54,20 +89,16 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
         {
             if (!string.IsNullOrEmpty(keyword))
             {
-                return _productCategoryRepository
-                    .FindAll(x => x.Name.Contains(keyword)).OrderBy(x => x.ParentId)
-                    .ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
-
+                return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository
+                    .FindAll(x => x.Name.Contains(keyword)).OrderBy(x => x.ParentId)).ToList();
             }
             else
-                return _productCategoryRepository.FindAll().OrderBy(x => x.ParentId)
-                    .ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
+                return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll().OrderBy(x => x.ParentId)).ToList();
         }
 
         public List<ProductCategoryViewModel> GetAllByParentId(int parentId)
         {
-            return _productCategoryRepository.FindAll(x => x.Status == Status.Active && x.ParentId == parentId)
-                .ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
+            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll(x => x.Status == Status.Active && x.ParentId == parentId)).ToList();
         }
 
         public ProductCategoryViewModel GetById(int id)
@@ -75,21 +106,123 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
             return _mapper.Map<ProductCategory, ProductCategoryViewModel>(_productCategoryRepository.FindById(id));
         }
 
-        public void UpdateParentId(int sourceId, int targetId, Dictionary<int, int> items)
+        public GenericResult UpdateParentId(int sourceId, int targetId, Dictionary<int, int> items)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var sourceCategory = _productCategoryRepository.FindById(sourceId);
+                sourceCategory.ParentId = targetId;
+                _productCategoryRepository.Update(sourceCategory);
+
+                var sibling = _productCategoryRepository.FindAll(x => items.Keys.Contains(x.Id));
+                foreach (var child in sibling)
+                {
+                    child.SortOrder = items[child.Id];
+                    _productCategoryRepository.Update(child);
+                }
+                return new GenericResult(true, "Update Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Update Failed", "Error");
+            }
         }
 
-        public void ReOrder(int sourceId, int targetId)
+        public GenericResult ReOrder(int sourceId, int targetId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var source = _productCategoryRepository.FindById(sourceId);
+                var target = _productCategoryRepository.FindById(targetId);
+                var tmpOrder = source.SortOrder;
+                source.SortOrder = target.SortOrder;
+                target.SortOrder = tmpOrder;
+                _productCategoryRepository.Update(source);
+                _productCategoryRepository.Update(target);
+                return new GenericResult(true, "Update Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Update Failed", "Error");
+            }
         }
+
+        #region RealTime
+
+        public GenericResult Add(AnnouncementViewModel announcementViewModel, List<AnnouncementUserViewModel> announcementUsers,
+            ProductCategoryViewModel productCategoryViewModel)
+        {
+            try
+            {
+                var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryViewModel);
+                _productCategoryRepository.Add(productCategory);
+                // Real Time
+                var announcement = _mapper.Map<AnnouncementViewModel, Announcement>(announcementViewModel);
+                _announceRepository.Add(announcement);
+                foreach (var announcementUserViewModel in announcementUsers)
+                {
+                    _announceUserRepository.Add(_mapper.Map<AnnouncementUserViewModel, AnnouncementUser>(announcementUserViewModel));
+                }
+                return new GenericResult(true, "Add Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Add Failed", "Error");
+            }
+        }
+
+        public GenericResult Update(AnnouncementViewModel announcementViewModel, List<AnnouncementUserViewModel> announcementUsers,
+            ProductCategoryViewModel productCategoryViewModel)
+        {
+            try
+            {
+                var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryViewModel);
+                _productCategoryRepository.Update(productCategory);
+                // Real Time
+                var announcement = _mapper.Map<AnnouncementViewModel, Announcement>(announcementViewModel);
+                _announceRepository.Add(announcement);
+                foreach (var announcementUserViewModel in announcementUsers)
+                {
+                    _announceUserRepository.Add(_mapper.Map<AnnouncementUserViewModel, AnnouncementUser>(announcementUserViewModel));
+                }
+                return new GenericResult(true, "Update Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Update Failed", "Error");
+            }
+        }
+
+        public GenericResult Delete(AnnouncementViewModel announcementViewModel, List<AnnouncementUserViewModel> announcementUsers, int id)
+        {
+            try
+            {
+                _productCategoryRepository.Remove(id);
+                // Real Time
+                var announcement = _mapper.Map<AnnouncementViewModel, Announcement>(announcementViewModel);
+                _announceRepository.Add(announcement);
+                foreach (var announcementUserViewModel in announcementUsers)
+                {
+                    _announceUserRepository.Add(_mapper.Map<AnnouncementUserViewModel, AnnouncementUser>(announcementUserViewModel));
+                }
+                return new GenericResult(true, "Delete Successful", "Successful");
+            }
+            catch (Exception)
+            {
+                return new GenericResult(false, "Delete Failed", "Error");
+            }
+        }
+
+        #endregion RealTime
 
         public List<ProductCategoryViewModel> GetHomeCategories(int top)
         {
-            return _productCategoryRepository.FindAll(x => x.HomeFlag, c => c.Products).OrderBy(x => x.HomeOrder)
-                .Take(top).ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
-
+            //var temp = _productCategoryRepository
+            //    .FindAll(x => x.HomeFlag == true, c => c.Products).ToList();
+            var model = _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository
+                .FindAll(x => x.HomeFlag == true).OrderBy(x => x.HomeOrder)
+                .Take(top)).ToList();
+            return model;
         }
 
         public void Save()
