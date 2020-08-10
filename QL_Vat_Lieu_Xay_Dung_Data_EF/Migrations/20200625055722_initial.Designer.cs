@@ -10,7 +10,7 @@ using QL_Vat_Lieu_Xay_Dung_Data_EF;
 namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200614114946_initial")]
+    [Migration("20200625055722_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
