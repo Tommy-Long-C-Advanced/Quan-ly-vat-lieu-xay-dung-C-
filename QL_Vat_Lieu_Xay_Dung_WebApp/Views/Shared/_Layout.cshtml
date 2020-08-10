@@ -1,49 +1,102 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - QL_Vat_Lieu_Xay_Dung_WebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- Basic page needs -->
+    <meta charset="utf-8">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content="@ViewData["MetaKeyWord"]">
+    <meta name="keywords" content="@ViewData["MetaDescription"]" />
+
+    <!-- Mobile specific metas  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/client/favicon.ico">
+    <!-- CSS Style -->
+    <link rel="stylesheet" href="~/assets/client/style.css">
+    @await RenderSectionAsync("Styles", required: false)
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+<body class="@ViewData["BodyClass"]">
+
+    <!-- mobile menu -->
+    @await Component.InvokeAsync("MobileMenu")
+    <!-- end mobile menu -->
+
+    <div id="page">
+
+        <!-- Header -->
+        @await Component.InvokeAsync("Header")
+        <!-- end header -->
+        <nav>
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">QL_Vat_Lieu_Xay_Dung_WebApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="row">
+                    @await Component.InvokeAsync("Menu")
+                    <div class="col-md-9 col-sm-9 jtv-megamenu">
+                        <div class="mtmegamenu">
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+        @RenderBody()
+
+        <!-- Footer -->
+        <partial name="_FooterPartial" />
+        <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-angle-up"></i></a>
+
+        <!-- End Footer -->
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - QL_Vat_Lieu_Xay_Dung_WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    <!-- JS -->
+    <!-- jquery js -->
+    <script type="text/javascript" src="~/assets/client/js/jquery.min.js"></script>
+
+    <!-- bootstrap js -->
+    <script type="text/javascript" src="~/assets/client/js/bootstrap.min.js"></script>
+
+    <!-- owl.carousel.min js -->
+    <script type="text/javascript" src="~/assets/client/js/owl.carousel.min.js"></script>
+
+    <!-- jquery.mobile-menu js -->
+    <script type="text/javascript" src="~/assets/client/js/mobile-menu.js"></script>
+
+    <!--jquery-ui.min js -->
+    <script type="text/javascript" src="~/assets/client/js/jquery-ui.js"></script>
+
+    <!-- main js -->
+    <script type="text/javascript" src="~/assets/client/js/main.js"></script>
+
+    <!-- countdown js -->
+    <script type="text/javascript" src="~/assets/client/js/countdown.js"></script>
+
+    <!-- Slider Js -->
+    <script type="text/javascript" src="~/assets/client/js/revolution-slider.js"></script>
+    <!--Notify js-->
+    <script src="~/lib/notify/notify.js"></script>
+    <script src="~/lib/notify/styles/metro/notify-metro.js"></script>
+    <!-- Bootbox-->
+    <script src="~/lib/bootbox.js/bootbox.js"></script>
+    <!--Mustache-->
+    <script src="~/lib/mustache.js/mustache.js"></script>
+<!-- client custom script-->
+@*<script src="~/assets/client-app/client-shared/client-customScript.js"></script>
+<script src="~/assets/client-app/client_controllers/base/base_index.js" ></script>*@
+    
+<script src="~/assets/client-app/client-shared/client-customScript.min.js"></script>
+<script src="~/assets/client-app/client_controllers/base/base_index.min.js" ></script>
+
+
+<!--Header Shop Cart-->
+    <script>
+        var baseObj = new BaseAjax();
+        baseObj.initialize();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

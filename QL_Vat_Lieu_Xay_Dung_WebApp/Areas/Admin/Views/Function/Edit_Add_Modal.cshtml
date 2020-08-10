@@ -1,0 +1,68 @@
+﻿<div id="modal-add-edit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Function Update</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" id="frmMaintainance">
+                        <div class="form-group">
+                            <label for="txtId" class="col-md-3 col-sm-3 control-label" style="padding-right:0">Id</label>
+                            <div class="col-md-9 col-sm-9">
+                                <input type="text" name="txtId" class="form-control" id="txtId">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtName" class="col-md-3 col-sm-3 control-label" style="padding-right:0">Name</label>
+                            <div class="col-md-9 col-sm-9">
+                                <input type="text" name="txtName" class="form-control" id="txtName" placeholder="Name of category">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtURL" class="col-md-3 col-sm-3 control-label" style="padding-right:0">URL</label>
+                            <div class="col-md-9 col-sm-9">
+                                <input type="text" name="txtURL" class="form-control" id="txtURL">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 control-label" style="padding-right:0">Parent</label>
+                            <div class="col-md-9 col-sm-9">
+                                <input id="ddlCategoryId" class="form-control" name="ddlCategoryId" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtIconCss" class="col-md-3 col-sm-3 control-label" style="padding-right:0">Icon Css</label>
+                            <div class="col-md-9 col-sm-9">
+                                <input type="text" name="txtIconCss" class="form-control" id="txtIconCss">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtOrder" class="col-md-3 col-sm-3 control-label" style="padding-right:0">Sort Order</label>
+                            <div class="col-md-9 col-sm-9">
+                                <input type="number" name="txtOrder" class="form-control" min="1" id="txtOrder">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-9 col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" checked="checked" id="ckStatusM">
+                                        <span class="text">Active.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

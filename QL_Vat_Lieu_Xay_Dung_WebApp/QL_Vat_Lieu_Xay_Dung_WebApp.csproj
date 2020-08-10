@@ -1,26 +1,244 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>aspnet-QL_Vat_Lieu_Xay_Dung_WebApp-E9C55AE4-8D22-4159-9D19-8F9ACBABF994</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4" />
+    <Compile Remove="Areas\Admin\Models\**" />
+    <Compile Remove="wwwroot\lib\gentelella\**" />
+    <Content Remove="Areas\Admin\Models\**" />
+    <Content Remove="wwwroot\lib\gentelella\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
+    <EmbeddedResource Remove="wwwroot\lib\gentelella\**" />
+    <None Remove="Areas\Admin\Models\**" />
+    <None Remove="wwwroot\lib\gentelella\**" />
+    <TypeScriptCompile Remove="Areas\Admin\Models\**" />
+    <TypeScriptCompile Remove="wwwroot\lib\gentelella\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+    <Content Remove="wwwroot\assets\app\controllers\brand\brand_index.min.js" />
+    <Content Remove="wwwroot\assets\app\controllers\function\function_ajax.min.js" />
+    <Content Remove="wwwroot\assets\app\controllers\login\loginIndex.min.js" />
+    <Content Remove="wwwroot\assets\app\controllers\product-receipt\receipt_ajax.min.js" />
+    <Content Remove="wwwroot\assets\app\controllers\product\product_images_management_index.min.js" />
+    <Content Remove="wwwroot\assets\app\controllers\role\role_ajax.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\assets\app\controllers\brand\brand_index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\app\controllers\function\function_ajax.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\app\controllers\login\loginIndex.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\app\controllers\product-receipt\receipt_ajax.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\app\controllers\product\product_images_management_index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\app\controllers\role\role_ajax.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="bootstrap" Version="4.5.0" />
+    <PackageReference Include="jQuery" Version="3.5.1" />
+    <PackageReference Include="jQuery.Validation" Version="1.19.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.Json" Version="3.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
+    <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Dapper\QL_Vat_Lieu_Xay_Dung_Dapper.csproj" />
     <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Data\QL_Vat_Lieu_Xay_Dung_Data.csproj" />
     <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Data_EF\QL_Vat_Lieu_Xay_Dung_Data_EF.csproj" />
     <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Infrastructure\QL_Vat_Lieu_Xay_Dung_Infrastructure.csproj" />
     <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Services\QL_Vat_Lieu_Xay_Dung_Services.csproj" />
     <ProjectReference Include="..\QL_Vat_Lieu_Xay_Dung_Utilities\QL_Vat_Lieu_Xay_Dung_Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="bundleconfig.json" />
+    <None Include="wwwroot\assets\admin\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\assets\app\controllers\brand\brand_index.min.js" />
+    <None Include="wwwroot\assets\app\controllers\function\function_ajax.min.js" />
+    <None Include="wwwroot\assets\app\controllers\login\loginIndex.min.js" />
+    <None Include="wwwroot\assets\app\controllers\product-receipt\receipt_ajax.min.js" />
+    <None Include="wwwroot\assets\app\controllers\product\product_images_management_index.min.js" />
+    <None Include="wwwroot\assets\app\controllers\role\role_ajax.min.js" />
+    <None Include="wwwroot\assets\client\fonts\font-awesome\fontawesome-webfont.svg" />
+    <None Include="wwwroot\assets\client\fonts\font-awesome\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\assets\client\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\assets\client\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\assets\client\fonts\pe-icon-7-stroke\Pe-icon-7-stroke.svg" />
+    <None Include="wwwroot\assets\client\fonts\revicons.svg" />
+    <None Include="wwwroot\assets\client\fonts\revicons\index.php" />
+    <None Include="wwwroot\assets\client\fonts\revicons\revicons.svg" />
+    <None Include="wwwroot\assets\client\fonts\simple-line-icons\Simple-Line-Icons.dev.svg" />
+    <None Include="wwwroot\assets\client\fonts\simple-line-icons\Simple-Line-Icons.svg" />
+    <None Include="wwwroot\assets\client\fonts\simple-line-icons\Simple-Line-Icons.woff2" />
+    <None Include="wwwroot\assets\client\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\client\js\cloud-zoom.js" />
+    <None Include="wwwroot\assets\client\js\countdown.js" />
+    <None Include="wwwroot\assets\client\js\jquery-ui.js" />
+    <None Include="wwwroot\assets\client\js\jquery.bxslider.js" />
+    <None Include="wwwroot\assets\client\js\jquery.flexslider.js" />
+    <None Include="wwwroot\assets\client\js\jquery.magnifying-zoom.js" />
+    <None Include="wwwroot\assets\client\js\jquery.min.js" />
+    <None Include="wwwroot\assets\client\js\main.js" />
+    <None Include="wwwroot\assets\client\js\mobile-menu.js" />
+    <None Include="wwwroot\assets\client\js\owl.carousel.min.js" />
+    <None Include="wwwroot\assets\client\js\revolution-extension.js" />
+    <None Include="wwwroot\assets\client\js\revolution-slider.js" />
+    <None Include="wwwroot\lib\jquery-easyui\easyloader.js" />
+    <None Include="wwwroot\lib\jquery-easyui\jquery.easyui.min.js" />
+    <None Include="wwwroot\lib\jquery-easyui\jquery.easyui.mobile.js" />
+    <None Include="wwwroot\lib\jquery-easyui\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-af.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-am.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-ar.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-bg.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-ca.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-cs.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-cz.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-da.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-de.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-el.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-en.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-es.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-fa.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-fr.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-it.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-jp.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-ko.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-nl.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-pl.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-pt_BR.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-ru.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-sv_SE.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-tr.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-ua.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-zh_CN.js" />
+    <None Include="wwwroot\lib\jquery-easyui\locale\easyui-lang-zh_TW.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.accordion.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.calendar" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.calendar.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.checkbox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.combo.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.combobox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.combogrid.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.combotree.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.combotreegrid.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.datagrid.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.datalist.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.datebox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.datetimebox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.datetimespinner.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.dialog.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.draggable.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.droppable.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.filebox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.form.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.layout.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.linkbutton.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.maskedbox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.menu.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.menubutton.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.messager.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.mobile.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.numberbox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.numberspinner.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.pagination.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.panel.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.parser.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.passwordbox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.progressbar.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.propertygrid.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.radiobutton.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.resizable.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.searchbox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.sidemenu.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.slider.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.spinner.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.splitbutton.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.switchbutton.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.tabs.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.tagbox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.textbox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.timepicker.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.timespinner.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.tooltip.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.tree.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.treegrid.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.validatebox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\plugins\jquery.window.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\easyloader.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.accordion.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.calendar.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.combobox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.datebox.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.draggable.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.droppable.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.form.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.linkbutton.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.menu.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.parser.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.progressbar.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.propertygrid.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.resizable.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.slider.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.tabs.js" />
+    <None Include="wwwroot\lib\jquery-easyui\src\jquery.window.js" />
+    <None Include="wwwroot\lib\jquery-easyui\themes\material-teal\images\Thumbs.db" />
+    <None Include="wwwroot\lib\jquery-easyui\themes\material\images\Thumbs.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
+    <Folder Include="wwwroot\uploaded\images\ 20200718\" />
   </ItemGroup>
 
 </Project>

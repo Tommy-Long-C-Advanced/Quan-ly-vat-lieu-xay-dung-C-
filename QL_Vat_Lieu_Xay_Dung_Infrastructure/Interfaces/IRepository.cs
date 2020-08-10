@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces
 {
@@ -10,22 +9,40 @@ namespace QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces
     public interface IRepository<T, K> where T : class
     {
         /// <summary>
-        /// params Expression<Func<T, object>>[] là 1 danh sách các cái tham số nó sẽ trả về 1 object
+        ///     params Expression<Func<T, object>>[] là 1 danh sách các cái tham số nó sẽ trả về 1 object
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="includeProperties"></param>
+        /// <param name="predicate"></param>
         /// <returns></returns>
-        T FindById(K id, params Expression<Func<T, object>>[] includeProperties);
+        T FindById(K id);
 
-        T FindSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+        T FindSingle(Expression<Func<T, bool>> predicate);
 
-        IQueryable<T> FindAll(params Expression<Func<T, object>>[] includeProperties);
+        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate);
 
-        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+        T FindFirstOrDefault(Expression<Func<T, bool>> predicate);
+
+        IQueryable<T> FindAll();
+
+        bool CheckByAny(T entity);
+
+        bool CheckByAny(Expression<Func<T, bool>> predicate);
+
+        //T FindById(K id, params Expression<Func<T, object>>[] includeProperties);
+
+        //T FindSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+
+        //IQueryable<T> FindAll(params Expression<Func<T, object>>[] includeProperties);
+
+        //IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
 
         void Add(T entity);
 
+        void AddMultiple(List<T> entities);
+
         void Update(T entity);
+
+        void UpdateMultiple(List<T> entities);
 
         void Remove(T entity);
 
