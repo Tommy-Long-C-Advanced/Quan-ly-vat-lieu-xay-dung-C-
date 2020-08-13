@@ -50,13 +50,10 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
 
             #region Đổi Form Ở Đây
             // Doi Form o day
-
-            Application.Run(services.GetRequiredService<frmDanhMucHangHoa>());
-
             var mainForm = services.GetRequiredService<frmLogin>();
             if (mainForm.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(services.GetRequiredService<frmNhomQuyen>());
+                Application.Run(services.GetRequiredService<frmQuanLy>());
             }
 
             if (mainForm.ShowDialog() == DialogResult.No)
