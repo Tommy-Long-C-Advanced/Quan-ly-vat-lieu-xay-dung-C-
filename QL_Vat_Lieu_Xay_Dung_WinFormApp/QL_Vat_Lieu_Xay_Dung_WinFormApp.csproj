@@ -50,7 +50,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.36, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.BonusSkins.v20.1" />
     <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -90,7 +89,6 @@
     <Reference Include="DevExpress.XtraSpreadsheet.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="NumberTextBox">
       <HintPath>..\Library_DLL\NumberTextBox.dll</HintPath>
     </Reference>
@@ -130,11 +128,11 @@
     <Compile Include="frmHangHoa.Designer.cs">
       <DependentUpon>frmHangHoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKhachHang_NCC.cs">
+    <Compile Include="frmNhaCungCap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKhachHang_NCC.Designer.cs">
-      <DependentUpon>frmKhachHang_NCC.cs</DependentUpon>
+    <Compile Include="frmNhaCungCap.Designer.cs">
+      <DependentUpon>frmNhaCungCap.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -160,6 +158,12 @@
     <Compile Include="frmQuanLy.Designer.cs">
       <DependentUpon>frmQuanLy.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmNhomQuyen.cs">
@@ -167,12 +171,6 @@
     </Compile>
     <Compile Include="frmNhomQuyen.Designer.cs">
       <DependentUpon>frmNhomQuyen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPhanQuyen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPhanQuyen.Designer.cs">
-      <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmBill_BillDetailt.resx">
       <DependentUpon>frmBill_BillDetailt.cs</DependentUpon>
@@ -183,8 +181,8 @@
     <EmbeddedResource Include="frmHangHoa.resx">
       <DependentUpon>frmHangHoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmKhachHang_NCC.resx">
-      <DependentUpon>frmKhachHang_NCC.cs</DependentUpon>
+    <EmbeddedResource Include="frmNhaCungCap.resx">
+      <DependentUpon>frmNhaCungCap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -198,11 +196,11 @@
     <EmbeddedResource Include="frmNhomQuyen.resx">
       <DependentUpon>frmNhomQuyen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPhanQuyen.resx">
-      <DependentUpon>frmPhanQuyen.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmQuanLy.resx">
       <DependentUpon>frmQuanLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -382,6 +380,237 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\backward_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\selectall_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\selectall_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usergroup_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usergroup_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cate4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cate5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cate2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cate1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brand10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifying_glass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-13.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-15.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-16.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-17.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-18.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-20.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-21.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-22.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-23.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-25.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-26.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-27.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-28.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-30.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-31.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-33.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-34.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-35.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-36.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-37.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-38.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-39.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-40.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-41.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-42.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-43.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-44.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-45.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-46.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-47.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-48.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-inax-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-inax-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-inax-3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-inax-4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product-inax-5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slide-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slide-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slide-3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveto_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

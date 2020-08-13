@@ -82,7 +82,8 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
                 .Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
             foreach (var itemEntityEntry in modified)
             {
-                if (itemEntityEntry.Entity is IDateTracking changedOrAddedItem)
+                var changedOrAddedItem = itemEntityEntry.Entity as IDateTracking;
+                if (changedOrAddedItem != null)
                 {
                     if (itemEntityEntry.State == EntityState.Added)
                         changedOrAddedItem.DateCreated = DateTime.Now;
