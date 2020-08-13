@@ -41,13 +41,14 @@
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
             this.datagv_DanhMuc = new DevExpress.XtraGrid.GridControl();
             this.gv_DanhMuc = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemHinhAnh = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ptrHinhAnh = new DevExpress.XtraEditors.PictureEdit();
-            this.cbDanhMucCha = new DevExpress.XtraEditors.ComboBoxEdit();
             this.chkTrangThai = new DevExpress.XtraEditors.CheckButton();
             this.lblDanhMucCha = new DevExpress.XtraEditors.LabelControl();
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
+            this.cbDanhMucCha = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenDanhMuc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).BeginInit();
             this.stackPanel1.SuspendLayout();
@@ -55,9 +56,9 @@
             this.tablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagv_DanhMuc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DanhMuc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHinhAnh)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptrHinhAnh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbDanhMucCha.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtTenDanhMuc
@@ -225,6 +226,8 @@
             this.datagv_DanhMuc.Location = new System.Drawing.Point(3, 191);
             this.datagv_DanhMuc.MainView = this.gv_DanhMuc;
             this.datagv_DanhMuc.Name = "datagv_DanhMuc";
+            this.datagv_DanhMuc.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemHinhAnh});
             this.tablePanel1.SetRow(this.datagv_DanhMuc, 1);
             this.datagv_DanhMuc.Size = new System.Drawing.Size(1253, 474);
             this.datagv_DanhMuc.TabIndex = 3;
@@ -238,12 +241,16 @@
             this.gv_DanhMuc.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gv_DanhMuc_RowCellClick);
             this.gv_DanhMuc.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gv_DanhMuc_CellValueChanged);
             // 
+            // repositoryItemHinhAnh
+            // 
+            this.repositoryItemHinhAnh.Name = "repositoryItemHinhAnh";
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tablePanel1.SetColumn(this.panel1, 0);
-            this.panel1.Controls.Add(this.ptrHinhAnh);
             this.panel1.Controls.Add(this.cbDanhMucCha);
+            this.panel1.Controls.Add(this.ptrHinhAnh);
             this.panel1.Controls.Add(this.chkTrangThai);
             this.panel1.Controls.Add(this.lblDanhMucCha);
             this.panel1.Controls.Add(this.txtTenDanhMuc);
@@ -266,18 +273,6 @@
             this.ptrHinhAnh.Size = new System.Drawing.Size(240, 148);
             this.ptrHinhAnh.TabIndex = 14;
             this.ptrHinhAnh.EditValueChanged += new System.EventHandler(this.ptrHinhAnh_EditValueChanged);
-            // 
-            // cbDanhMucCha
-            // 
-            this.cbDanhMucCha.Location = new System.Drawing.Point(177, 79);
-            this.cbDanhMucCha.Name = "cbDanhMucCha";
-            this.cbDanhMucCha.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbDanhMucCha.Properties.Appearance.Options.UseFont = true;
-            this.cbDanhMucCha.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.cbDanhMucCha.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbDanhMucCha.Size = new System.Drawing.Size(299, 30);
-            this.cbDanhMucCha.TabIndex = 13;
             // 
             // chkTrangThai
             // 
@@ -315,6 +310,15 @@
             // 
             this.xtraSaveFileDialog1.FileName = "xtraSaveFileDialog1";
             // 
+            // cbDanhMucCha
+            // 
+            this.cbDanhMucCha.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDanhMucCha.FormattingEnabled = true;
+            this.cbDanhMucCha.Location = new System.Drawing.Point(177, 80);
+            this.cbDanhMucCha.Name = "cbDanhMucCha";
+            this.cbDanhMucCha.Size = new System.Drawing.Size(299, 29);
+            this.cbDanhMucCha.TabIndex = 15;
+            // 
             // frmDanhMucHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -331,10 +335,10 @@
             this.tablePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagv_DanhMuc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DanhMuc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHinhAnh)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptrHinhAnh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbDanhMucCha.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -356,8 +360,9 @@
         private DevExpress.XtraGrid.GridControl datagv_DanhMuc;
         private DevExpress.XtraGrid.Views.Grid.GridView gv_DanhMuc;
         private DevExpress.XtraEditors.CheckButton chkTrangThai;
-        private DevExpress.XtraEditors.ComboBoxEdit cbDanhMucCha;
         private DevExpress.XtraEditors.PictureEdit ptrHinhAnh;
         private DevExpress.XtraEditors.SimpleButton btnBack;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemHinhAnh;
+        private System.Windows.Forms.ComboBox cbDanhMucCha;
     }
 }

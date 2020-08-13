@@ -1,24 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using DevExpress.Spreadsheet.Functions;
+using QL_Vat_Lieu_Xay_Dung_Data.Enums;
 using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.System;
-using DevExpress.XtraGrid.Columns;
-using QL_Vat_Lieu_Xay_Dung_WDF_Core.FunctionStatic;
-using DevExpress.XtraSpreadsheet.Model;
 using QL_Vat_Lieu_Xay_Dung_Utilities.Dtos;
-using QL_Vat_Lieu_Xay_Dung_Data.Enums;
+using QL_Vat_Lieu_Xay_Dung_WDF_Core.FunctionStatic;
 
-namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
+namespace QL_Vat_Lieu_Xay_Dung_WDF_Core.Form_QuanLy
 {
     public partial class frmManHinh : DevExpress.XtraEditors.XtraForm
     {
@@ -149,7 +140,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             }
         }
 
-        private void btnThem_Click(object sender, EventArgs e)
+        private async void btnThem_Click(object sender, EventArgs e)
         {
             btnThem.Text = btnThem.Text.Equals("Tạo mới màn hình") ? "Lưu" : "Tạo mới màn hình";
             if (btnThem.Text.Equals("Tạo mới màn hình")) // An nut them lan 2
@@ -172,7 +163,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
                 });
                 FormHelper.showDialog(rs);
                 //End Code
-                loadGvFunction();
+                await loadGvFunction();
                 update_Edit();
                 datagv_ManHinh.Enabled = true;
                 setBtnBack_False();
@@ -187,7 +178,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             }
         }
 
-        private void btnSua_Click(object sender, EventArgs e)
+        private async void btnSua_Click(object sender, EventArgs e)
         {
             btnSua.Text = btnSua.Text.Equals("Chỉnh sửa màn hình") ? "Cập nhật" : "Chỉnh sửa màn hình";
             if (btnSua.Text.Equals("Chỉnh sửa màn hình")) // An nut sửa lan 2
@@ -205,7 +196,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
                 });
                 FormHelper.showDialog(rs);
                 //End Code 
-                loadGvFunction();
+                await loadGvFunction();
                 reStart();
                 datagv_ManHinh.Enabled = true;
                 setBtnBack_False();
@@ -222,14 +213,14 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             update_Edit();
         }
 
-        private void btnXoa_Click(object sender, EventArgs e)
+        private async void btnXoa_Click(object sender, EventArgs e)
         {
             string id = gv_ManHinh.GetRowCellValue(gv_ManHinh.GetSelectedRows()[0], "Id").ToString();
             if (FormHelper.showRemoveDialog(id) == DialogResult.No)
                 return;
             GenericResult rs = _functionService.Delete(id);
             FormHelper.showDialog(rs);
-            loadGvFunction();
+            await loadGvFunction();
             reStart();
         }
         private void gv_ManHinh_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
