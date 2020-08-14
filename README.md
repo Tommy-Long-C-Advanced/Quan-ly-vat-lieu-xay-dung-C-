@@ -5,7 +5,7 @@ Web Application
 - Using  Google Map (Integrate in Contact Us).
 - Using  Authorization (Integrate in Website for Admin).
 - Using  Authentication (Integrate in Website for Admin).
-- Using  Entity Framework Code First (Use Add-Migration vs Update-Database to generate Database ).
+- Using  Entity Framework Code First (Using Add-Migration vs Update-Database to generate Database ).
 - Update Shopping Cart + Check Out (Integrated session management).
 - Using Host Builder, Service Provider and Dependency Injection.
 - Integrate External Login (Login with Facebook).
@@ -46,6 +46,7 @@ https://www.dammio.com/
 https://www.entityframeworktutorial.net/
 https://stackoverflow.com/
 https://stackoverrun.com/
+https://www.w3schools.com/
 
 Nguồn Template thu thập để làm Website:
 https://w3layouts.com/
