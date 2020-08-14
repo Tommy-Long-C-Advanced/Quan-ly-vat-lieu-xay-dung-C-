@@ -627,7 +627,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
                 });
             }
             await _context.SaveChangesAsync();
-           
+
             if (!_userManager.Users.Any())
             {
                 await _userManager.CreateAsync(new AppUser()
@@ -656,7 +656,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
                 var user = await _userManager.FindByNameAsync("admin");
                 await _userManager.AddToRoleAsync(user, "Admin");
             }
-          
+
         }
     }
 }
