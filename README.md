@@ -6,7 +6,7 @@ Web Application
 - Using  Authorization (Integrate in Website for Admin).
 - Using  Authentication (Integrate in Website for Admin).
 - Using  Entity Framework Code First (Use Add-Migration vs Update-Database to generate Database ).
-- Update Shopping Cart + Check Out (Use session to manage).
+- Update Shopping Cart + Check Out (Integrated session management).
 - Using Host Builder, Service Provider and Dependency Injection.
 - Integrate External Login (Login with Facebook).
 - Integrate ReCAPTCHA v2 by google (Integrate in Register for Client).
