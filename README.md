@@ -22,3 +22,5 @@ https://github.com/GroupDoAnVatLieuXayDung/QL_Vat_Lieu_Xay_Dung
 
 Repository Nộp Đồ Án Thầy Danh
 https://github.com/Tommy-Long-C-Advanced/Quan-ly-vat-lieu-xay-dung-C-
+
+Link Clip HƯớng Dẫn Set up apsetting để chạy WebApp và Winform
