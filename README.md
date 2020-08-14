@@ -1,25 +1,26 @@
 Web Application
 
-- Use Realtime (Integrate SignalR in Website for Admin)
-- Use Automatically Send Email (Integrate in Register for Client, Integrate in CheckOut, Integrate in Contact after sending Feedback)
-- Use Google Map (Integrate in Contact Us)
-- Use Authorization (Integrate in Website for Admin)
-- Use Authentication (Integrate in Website for Admin)
-- Use Entity Framework Code First (Use Add-Migration vs Update-Database to generate Database )
-- Update Shopping Cart + Check Out (Use session to manage)
-- Using Host Builder, Service Provider and Dependency Injection
-- Integrate External Login (Login with Facebook)
-- Integrate ReCAPTCHA v2 by google (Integrate in Register for Client)
-- Applying the design pattern of Domain Driven Design (DDD) to build the Website Application
+- Use Realtime (Integrate SignalR in Website for Admin).
+- Use Automatically Send Email (Integrate in Register for Client, Integrate in CheckOut, Integrate in Contact after sending Feedback).
+- Use Google Map (Integrate in Contact Us).
+- Use Authorization (Integrate in Website for Admin).
+- Use Authentication (Integrate in Website for Admin).
+- Use Entity Framework Code First (Use Add-Migration vs Update-Database to generate Database ).
+- Update Shopping Cart + Check Out (Use session to manage).
+- Using Host Builder, Service Provider and Dependency Injection.
+- Integrate External Login (Login with Facebook).
+- Integrate ReCAPTCHA v2 by google (Integrate in Register for Client).
+- Applying the design pattern of Domain Driven Design (DDD) to build the Website Application.
+
 WinForms
 
-- Using Host Builder, Service Provider and Dependency Injection with Windows Forms on .NET Core 3
-- Fix Attribute Description convert to Enum
+- Using Host Builder, Service Provider and Dependency Injection with Windows Forms on .NET Core 3.
+- Fix Attribute Description convert to Enum.
 
 Web API
 
-- Integrate JSon Web Token (JWT) in API
-- Integrate Swagger to Manage API
+- Integrate JSon Web Token (JWT) in API.
+- Integrate Swagger to Manage API.
 
 Repository Ghi Lại Quá Trình Hoàn Thành Đồ Án Môn Học Thầy Danh:
 https://github.com/GroupDoAnVatLieuXayDung/QL_Vat_Lieu_Xay_Dung
